@@ -1,6 +1,8 @@
 const assert = require("assert");
 const anchor = require("@project-serum/anchor");
 const { SystemProgram } = anchor.web3;
+import * as assert from "assert";
+import * as spl from "@solana/spl-token";
 
 describe("mysolanaapp", () => {
   /* create and set a Provider */

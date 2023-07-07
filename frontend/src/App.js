@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Connection, PublicKey } from '@solana/web3.js';
+import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 import {
   Program, AnchorProvider, web3
 } from '@project-serum/anchor';
@@ -107,6 +107,10 @@ function App() {
     );
   }
 }
+
+// To deploy on dev net
+// const network = clusterApiUrl('devnet');
+// <ConnectionProvider endpoint={network}></ConnectionProvider>
 
 /* wallet configuration as specified here: https://github.com/solana-labs/wallet-adapter#setup */
 const AppWithProvider = () => (

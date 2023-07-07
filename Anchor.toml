@@ -1,5 +1,5 @@
 [features]
-seeds = false
+seeds = true
 skip-lint = false
 [programs.localnet]
 mysolanaapp = "H2uuip7vMqreJJfYPMvpAttqwxuEurpCr7RnrhXFvUtx"

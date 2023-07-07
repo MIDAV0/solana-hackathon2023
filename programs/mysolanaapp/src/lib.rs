@@ -1,44 +1,28 @@
 use anchor_lang::prelude::*;
-use anchor_lang::solana_program::entrypoint::ProgramResult;
+
+pub mod instructions;
+pub mod state;
+
+use instructions::*;
 
 declare_id!("H2uuip7vMqreJJfYPMvpAttqwxuEurpCr7RnrhXFvUtx");
 
+// Processor
 #[program]
-mod mysolanaapp {
+pub mod mysolanaapp {
     use super::*;
 
-    pub fn create(ctx: Context<Create>) -> ProgramResult {
-        let base_account = &mut ctx.accounts.base_account;
-        base_account.count = 0;
-        Ok(())
+
+    pub fn create_vault(ctx: Context<CreateVault>) -> Result<()> {
+        instructions::create_vault::handler(ctx)
     }
 
-    pub fn increment(ctx: Context<Increment>) -> ProgramResult {
-        let base_account = &mut ctx.accounts.base_account;
-        base_account.count += 1;
-        Ok(())
+    pub fn deposit_to_vault(ctx: Context<DepositToVault>, amount: u64) -> Result<()> {
+        instructions::deposit_to_vault::handler(ctx, amount)
     }
-}
 
-// Transaction instructions
-#[derive(Accounts)]
-pub struct Create<'info> {
-    #[account(init, payer = user, space = 16 + 16)]
-    pub base_account: Account<'info, BaseAccount>,
-    #[account(mut)]
-    pub user: Signer<'info>,
-    pub system_program: Program <'info, System>,
-}
+    pub fn borrow_from_vault(ctx: Context<BorrowFromVault>, amount: u64) -> Result<()> {
+        instructions::borrow_from_vault::handler(ctx, amount)
+    }
 
-// Transaction instructions
-#[derive(Accounts)]
-pub struct Increment<'info> {
-    #[account(mut)]
-    pub base_account: Account<'info, BaseAccount>,
-}
-
-// An account that goes inside a transaction instruction
-#[account]
-pub struct BaseAccount {
-    pub count: u64,
 }
