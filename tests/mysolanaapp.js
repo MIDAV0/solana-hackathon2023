@@ -1,45 +1,62 @@
 const assert = require("assert");
 const anchor = require("@project-serum/anchor");
+const spl = require("@solana/spl-token");
 const { SystemProgram } = anchor.web3;
-import * as assert from "assert";
-import * as spl from "@solana/spl-token";
 
 describe("mysolanaapp", () => {
   /* create and set a Provider */
   const provider = anchor.getProvider();
   anchor.setProvider(provider);
   const program = anchor.workspace.Mysolanaapp;
-  it("Creates a counter)", async () => {
-    /* Call the create function via RPC */
-    const baseAccount = anchor.web3.Keypair.generate();
-    await program.rpc.create({
-      accounts: {
-        baseAccount: baseAccount.publicKey,
-        user: provider.wallet.publicKey,
-        systemProgram: SystemProgram.programId,
-      },
-      signers: [baseAccount],
-    });
 
-    /* Fetch the account and check the value of count */
-    const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-    console.log('Count 0: ', account.count.toString())
-    assert.ok(account.count.toString() == 0);
-    _baseAccount = baseAccount;
+  let vaultOwner;
+  let depositor;
+  let borrower;
+  let vaultMintSeed;
+  let vaultMintPda;
+  let vaultMintPdaBump;
+  let vaultAccount;
 
+  before(async () => {
+    vaultOwner = await program.provider.wallet.publicKey;
+    depositor = await anchor.web3.Keypair.generate();
+    borrower = await anchor.web3.Keypair.generate();    
+    vaultMintSeed = Buffer.from(anchor.utils.bytes.utf8.encode("vault_mint"));
+    [vaultMintPda, vaultMintPdaBump] = await anchor.web3.PublicKey.findProgramAddressSync(
+      [vaultMintSeed],
+      program.programId
+    );    
+    vaultAccount = await anchor.web3.Keypair.generate();
   });
 
-  it("Increments the counter", async () => {
-    const baseAccount = _baseAccount;
+  it("Initialize the vault", async () => {
+    await program.rpc.createVault(
+      {
+        accounts: {
+          from: vaultOwner,
+          vault: vaultAccount.publicKey,
+          mint: vaultMintPda,
+          tokenProgram: spl.TOKEN_PROGRAM_ID,
+          systemProgram: anchor.web3.SystemProgram.programId,
+        },
+        signers: [vaultAccount],
+      }
+    );
+    
+    const account = await program.account.vault.fetch(vaultAccount.publicKey);
+    // console.log('Vault owner: ', account.owner)
+    // console.log('Vault stable amount: ', account.stableAmount.toString())
+    // console.log('Vault sol balance: ', account.solAmount.toString())
 
-    await program.rpc.increment({
-      accounts: {
-        baseAccount: baseAccount.publicKey,
-      },
-    });
-
-    const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-    console.log('Count 1: ', account.count.toString())
-    assert.ok(account.count.toString() == 1);
+    assert.ok(account.owner.equals(vaultOwner));
+    assert.ok(account.stableAmount.eq(new anchor.BN(0)));
+    assert.ok(account.solAmount.eq(new anchor.BN(0)));
   });
+
+  it("deposits 10USDC tokens to the vault", async () => {
+  })
+
+  it("borrows 5USDC tokens from the vault", async () => {
+
+  })
 });

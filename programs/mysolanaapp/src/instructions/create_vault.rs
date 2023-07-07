@@ -9,17 +9,15 @@ use crate::state::*;
 
 #[derive(Accounts)]
 pub struct CreateVault<'info> {
-    #[account(
-        init,
-        seeds = [b"vault".as_ref(), from.key.as_ref()],
-        bump,
-        payer = from,
-        space = 32 + 8 + 8 + 64,
-    )]
-    pub vault: Account<'info, Vault>,
-
     #[account(mut)]
     pub from: Signer<'info>,
+
+    #[account(
+        init,
+        payer = from,
+        space = 8 + 8 + 64,
+    )]
+    pub vault: Account<'info, Vault>,
 
     // Mint account
     #[account(
@@ -41,9 +39,10 @@ pub fn handler(
     ctx: Context<CreateVault>,
 ) -> Result<()> {
     let vault = &mut ctx.accounts.vault;
-    vault.owner = *ctx.accounts.from.key;
+    let from = &mut ctx.accounts.from;
+    vault.owner = *from.key;
     vault.stable_amount = 0;
     vault.sol_amount = 0;
-    vault.allow_withdrawal = vec![*ctx.accounts.from.key];
+    vault.allow_withdrawal = vec![];
     Ok(())
 }

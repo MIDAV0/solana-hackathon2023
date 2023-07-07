@@ -7,13 +7,13 @@ use anchor_spl::{
 };
 
 #[derive(Accounts)]
-#[instruction(amount: u64, mint_seed: Vec<u8>)]
+#[instruction(amount: u64, mint_bump: u8, mint_seed: Vec<u8>)]
 pub struct DepositToVault<'info> {
     // Mint to create vault tokens
     #[account(
         mut,
         seeds = [&mint_seed],
-        bump
+        bump = mint_bump,
     )]
     pub mint: Account<'info, Mint>,
 
@@ -55,8 +55,8 @@ pub fn handler(
     let from = &mut ctx.accounts.from;
     let authority = &ctx.accounts.from_signer;
     let token_program = &ctx.accounts.token_program;
-    let bump = *ctx.bumps.get("vault_mint").unwrap();
-    let seeds = [b"vault_mint".as_ref(), &[bump]];
+    // let bump = *ctx.bumps.get("vault_mint").unwrap();
+    let seeds = [b"vault_mint".as_ref()];
     let signer_seeds = &[&seeds[..]][..];
 
 
@@ -81,8 +81,6 @@ pub fn handler(
         authority: ctx.accounts.mint.to_account_info(),
     };
     
-    //let binding = &[b"vault_mint", &[bump]];
-    //let binding = [&[b"vault_mint", &[bump]]];
 
     let cpi_program = token_program.to_account_info();
     let cpi_ctx = CpiContext::new_with_signer(
