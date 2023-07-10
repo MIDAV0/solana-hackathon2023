@@ -2,93 +2,99 @@ use anchor_lang::prelude::*;
 
 use crate::state::*;
 use anchor_spl::{
-    associated_token::AssociatedToken,
     token::{Mint, Token, TokenAccount, MintTo, mint_to, transfer, Transfer},
 };
 
 #[derive(Accounts)]
-#[instruction(amount: u64, mint_bump: u8, mint_seed: Vec<u8>)]
+#[instruction(vault_token_mint_authority_bump: u8, stable_bump: u8, vault_token_mint_address: Pubkey, stable_token_mint_address: Pubkey)]
 pub struct DepositToVault<'info> {
-    // Mint to create vault tokens
+
+    // Token programm
+    pub token_program: Program<'info, Token>,
+
+    // Vault token mint
     #[account(
         mut,
-        seeds = [&mint_seed],
-        bump = mint_bump,
+        address = vault_token_mint_address,
     )]
-    pub mint: Account<'info, Mint>,
+    pub vault_token_mint: Account<'info, Mint>,
 
-    // Vault token account of person who deposited to vault
+    // Vault token mint authority
+    /// CHECK: only used as a signing PDA
     #[account(
-        init_if_needed,
-        payer = from_signer,
-        associated_token::mint = mint,
-        associated_token::authority = from_signer,
+        seeds = [vault_token_mint_address.as_ref()],
+        bump = vault_token_mint_authority_bump,
     )]
-    pub from_vault_token_account: Account<'info, TokenAccount>,
+    pub vault_token_mint_authority: UncheckedAccount<'info>,
 
+    // Depositor vault token account
     #[account(mut)]
-    pub vault: Account<'info, Vault>,
+    pub depositor_vault_token_account: Account<'info, TokenAccount>,
+
+    // Depositor stable token account
+    #[account(mut)]
+    pub depositor_stable_token_account: Account<'info, TokenAccount>,
+
+    // Signer / Depositor
+    pub depositor: Signer<'info>,
 
     // Vault stable token account
-    #[account(mut)]
-    pub vault_token_account: Account<'info, TokenAccount>,
+    #[account(
+        mut,
+        seeds = [stable_token_mint_address.as_ref()],
+        bump = stable_bump,
+    )]
+    pub vault_stable_token_account: Account<'info, TokenAccount>,
 
-    // Person who deposited to vault
-    #[account(mut)]
-    pub from_signer: Signer<'info>,
+    // Stable token mint
+    #[account(
+        address = stable_token_mint_address
+    )]
+    pub stable_token_mint: Account<'info, Mint>,
 
-    // Stable token account of person who deposited to vault
+    // Vault account
     #[account(mut)]
-    pub from: Account<'info, TokenAccount>,
-
-    pub token_program: Program<'info, Token>,
-    pub system_program: Program<'info, System>,
-    pub associated_token_program: Program<'info, AssociatedToken>,
+    pub vault_account: Account<'info, Vault>
 }
 
 pub fn handler(
     ctx: Context<DepositToVault>,
-    amount: u64,
+    stable_mint_bump: u8,
+    vault_token_mint_bump: u8,
+    deposit_amount: u64, 
 ) -> Result<()> {
-    let vault = &mut ctx.accounts.vault;
-    let vault_token_account = &mut ctx.accounts.vault_token_account;
-    let from = &mut ctx.accounts.from;
-    let authority = &ctx.accounts.from_signer;
-    let token_program = &ctx.accounts.token_program;
-    // let bump = *ctx.bumps.get("vault_mint").unwrap();
-    let seeds = [b"vault_mint".as_ref()];
-    let signer_seeds = &[&seeds[..]][..];
 
+    let vault = &mut ctx.accounts.vault_account;
 
-    // Transfer tokens from the `from` account to the `to` account.
-    let cpi_accounts = Transfer {
-        from: from.to_account_info().clone(),
-        to: vault_token_account.to_account_info().clone(),
-        authority: authority.to_account_info().clone(),
-    };
-    let cpi_program = token_program.to_account_info();
-    let cpi_ctx = CpiContext::new(cpi_program, cpi_accounts);
-    transfer(cpi_ctx, amount)?;
+    let stable_mint_address = ctx.accounts.stable_token_mint.key();
+    let seeds = &[stable_mint_address.as_ref(), &[stable_mint_bump]];
+    let signer = [&seeds[..]];
 
-
-    // Update the vault
-    vault.stable_amount += amount;
-
-    // Airdrop tokens to the vault token account of the person who deposited to vault
-    let cpi_accounts = MintTo {
-        mint: ctx.accounts.mint.to_account_info(),
-        to: ctx.accounts.from_vault_token_account.to_account_info(),
-        authority: ctx.accounts.mint.to_account_info(),
-    };
-    
-
-    let cpi_program = token_program.to_account_info();
+    // Transfer vault token to depositor
     let cpi_ctx = CpiContext::new_with_signer(
-        cpi_program, 
-        cpi_accounts,
-        signer_seeds,
+        ctx.accounts.token_program.to_account_info(),
+        MintTo {
+            mint: ctx.accounts.stable_token_mint.to_account_info(),
+            to: ctx.accounts.depositor_vault_token_account.to_account_info(),
+            authority: ctx.accounts.vault_token_mint_authority.to_account_info(),
+        },
+        &signer
     );
-    mint_to(cpi_ctx, amount)?;
+    mint_to(cpi_ctx, deposit_amount)?;
+
+
+    // Transfer stable token to vault
+    let cpi_ctx = CpiContext::new(
+        ctx.accounts.token_program.to_account_info(),
+        Transfer {
+            from: ctx.accounts.depositor_stable_token_account.to_account_info(),
+            to: ctx.accounts.vault_stable_token_account.to_account_info(),
+            authority: ctx.accounts.depositor.to_account_info(),
+        }
+    );
+    transfer(cpi_ctx, deposit_amount)?;
+
+    vault.stable_amount += deposit_amount;
 
     Ok(())
 }

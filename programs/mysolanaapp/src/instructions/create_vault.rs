@@ -1,17 +1,19 @@
 use anchor_lang::prelude::*;
 
 use anchor_spl::{
-    token::{Mint, Token},
+    token::{Mint, Token, TokenAccount},
 };
 
 
 use crate::state::*;
 
 #[derive(Accounts)]
+#[instruction(stable_token_mint_address: Pubkey)]
 pub struct CreateVault<'info> {
     #[account(mut)]
     pub from: Signer<'info>,
 
+    // Vault account
     #[account(
         init,
         payer = from,
@@ -19,19 +21,26 @@ pub struct CreateVault<'info> {
     )]
     pub vault: Account<'info, Vault>,
 
-    // Mint account
+    // Vault stable token PDA
     #[account(
         init,
-        seeds = [b"vault_mint".as_ref()],
-        bump,
         payer = from,
-        mint::decimals = 9,
-        mint::authority = mint,
+        seeds = [stable_token_mint_address.as_ref()],
+        bump,
+        token::mint = stable_token_mint,
+        token::authority = vault_stable_token_account,
     )]
-    pub mint: Account<'info, Mint>,
-    pub token_program: Program<'info, Token>,
+    pub vault_stable_token_account: Account<'info, TokenAccount>,
+
+    // Stable token Mint account
+    #[account(
+        address = stable_token_mint_address,
+    )]
+    pub stable_token_mint: Account<'info, Mint>,
 
     pub system_program: Program<'info, System>,
+    pub token_program: Program<'info, Token>,
+    pub rent: Sysvar<'info, Rent>,
 }
 
 
