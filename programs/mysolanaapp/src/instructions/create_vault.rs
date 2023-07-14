@@ -49,9 +49,8 @@ pub fn handler(
 ) -> Result<()> {
     let vault = &mut ctx.accounts.vault;
     let from = &mut ctx.accounts.from;
-    vault.owner = *from.key;
+    vault.vault_owner = *from.key;
     vault.stable_amount = 0;
     vault.sol_amount = 0;
-    vault.allow_withdrawal = vec![];
     Ok(())
 }
