@@ -95,6 +95,7 @@ pub fn handler(
     transfer(cpi_ctx, deposit_amount)?;
 
     vault.stable_amount += deposit_amount;
+    vault.vault_token_supply += deposit_amount;
 
     Ok(())
 }

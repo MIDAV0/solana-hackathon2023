@@ -48,6 +48,30 @@ pub fn handler(
 ) -> Result<()> {
     let vault = &mut ctx.accounts.vault_account;
 
+    // Check if the vault is initialized
+    if !vault.initialized {
+        return Err(ErrorCode::VaultNotInitialized.into());
+    }
+
+    // Check if the borrowing period has ended
+
+    // Check that the vault is not empty
+    if vault.stable_amount == 0 {
+        return Err(ErrorCode::VaultEmpty.into());
+    }
+    let vault_token_supply = vault.vault_token_supply;
+    let vault_stable_amount = vault.stable_amount;
+
+    let token_price = vault_stable_amount / vault_token_supply;
+    let rewards_share = vault.rewards * withdraw_amount / vault_token_supply;
+    let stable_token_withdraw_amount = withdraw_amount * token_price + rewards_share;
+
+    // Check that the vault has enough stable tokens
+    if vault.stable_amount < stable_token_withdraw_amount {
+        return Err(ErrorCode::VaultNotEnoughStable.into());
+    }
+
+
     // Burn user's vault tokens
     let cpi_ctx = CpiContext::new(
         ctx.accounts.token_program.to_account_info(),
@@ -73,9 +97,10 @@ pub fn handler(
         },
         &signer
     );
-    transfer(cpi_ctx, withdraw_amount)?;
+    transfer(cpi_ctx, stable_token_withdraw_amount)?;
 
-    vault.stable_amount -= withdraw_amount;
+    vault.stable_amount -= stable_token_withdraw_amount;
+    vault.vault_token_supply -= withdraw_amount;
 
     Ok(())
 }

@@ -53,14 +53,6 @@ describe("mysolanaapp", () => {
       1,
       vaultMintKeyPair
     )
-
-    // Depositors USDC token account
-
-    // Depositor vault token account
-
-    // Borrower USDC token account
-
-      console.log('USDC mint address: ', usdcMintAddress)
   });
 
   it("Initialize the vault", async () => {
