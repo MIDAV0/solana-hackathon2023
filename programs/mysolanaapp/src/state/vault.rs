@@ -8,6 +8,7 @@ pub struct Vault {
     pub stable_amount: u64,
     // The amount of SOL in the vault
     pub sol_amount: u64,
+
     // Vault token supply
     pub vault_token_supply: u64,
     // Vault start time
@@ -19,4 +20,5 @@ pub struct Vault {
     // Vault borrowing end time
     pub borrowing_end_time: u64,
     pub rewards: u64,
+
 }
