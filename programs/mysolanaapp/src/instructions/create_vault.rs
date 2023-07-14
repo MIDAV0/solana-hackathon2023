@@ -17,7 +17,7 @@ pub struct CreateVault<'info> {
     #[account(
         init,
         payer = from,
-        space = 8 + 8 + 64,
+        space = 64+64,
     )]
     pub vault: Account<'info, Vault>,
 
@@ -25,7 +25,7 @@ pub struct CreateVault<'info> {
     #[account(
         init,
         payer = from,
-        seeds = [stable_token_mint_address.as_ref()],
+        seeds = [b"stable-token-mint".as_ref()],
         bump,
         token::mint = stable_token_mint,
         token::authority = vault_stable_token_account,
@@ -52,6 +52,5 @@ pub fn handler(
     vault.owner = *from.key;
     vault.stable_amount = 0;
     vault.sol_amount = 0;
-    vault.allow_withdrawal = vec![];
     Ok(())
 }

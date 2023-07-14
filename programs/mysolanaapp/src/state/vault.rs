@@ -8,6 +8,4 @@ pub struct Vault {
     pub stable_amount: u64,
     // The amount of SOL in the vault
     pub sol_amount: u64,
-    // The accounts that can withdraw from the vault.
-    pub allow_withdrawal: Vec<Pubkey>,
 }

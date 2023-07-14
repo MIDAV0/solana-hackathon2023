@@ -42,7 +42,7 @@ describe("mysolanaapp", () => {
     // Vault mint
     vaultMintKeyPair = await anchor.web3.Keypair.generate();
     const [vaultMintPda, _] = await anchor.web3.PublicKey.findProgramAddressSync(
-      [vaultMintKeyPair.publicKey.toBuffer()],
+      [Buffer.from(anchor.utils.bytes.utf8.encode("vault-token-mint"))],
       program.programId
     );
     vaultMintAddress = await spl.createMint(
@@ -60,12 +60,12 @@ describe("mysolanaapp", () => {
 
     // Borrower USDC token account
 
-  
+      console.log('USDC mint address: ', usdcMintAddress)
   });
 
   it("Initialize the vault", async () => {
     const [usdcMintPDA, _] = await anchor.web3.PublicKey.findProgramAddressSync(
-      [usdcMintAddress.toBuffer()],
+      [Buffer.from(anchor.utils.bytes.utf8.encode("stable-token-mint"))],
       program.programId
     );
 
@@ -123,15 +123,16 @@ describe("mysolanaapp", () => {
     );
 
     const [usdcMintPDA, usdcMintBump] = await anchor.web3.PublicKey.findProgramAddressSync(
-      [usdcMintAddress.toBuffer()],
+      [Buffer.from(anchor.utils.bytes.utf8.encode("stable-token-mint"))],
       program.programId
     );
 
     const [vaultMintPDA, vaultMintBump] = await anchor.web3.PublicKey.findProgramAddressSync(
-      [vaultMintAddress.toBuffer()],
+      [Buffer.from(anchor.utils.bytes.utf8.encode("vault-token-mint"))],
       program.programId
     );
 
+    
     await program.rpc.depositToVault(
       vaultMintBump,
       usdcMintBump,

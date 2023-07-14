@@ -22,7 +22,7 @@ pub struct DepositToVault<'info> {
     // Vault token mint authority
     /// CHECK: only used as a signing PDA
     #[account(
-        seeds = [vault_token_mint_address.as_ref()],
+        seeds = [b"vault-token-mint".as_ref()],
         bump = vault_token_mint_authority_bump,
     )]
     pub vault_token_mint_authority: UncheckedAccount<'info>,
@@ -41,7 +41,7 @@ pub struct DepositToVault<'info> {
     // Vault stable token account
     #[account(
         mut,
-        seeds = [stable_token_mint_address.as_ref()],
+        seeds = [b"stable-token-mint".as_ref()],
         bump = stable_bump,
     )]
     pub vault_stable_token_account: Account<'info, TokenAccount>,
@@ -66,8 +66,8 @@ pub fn handler(
 
     let vault = &mut ctx.accounts.vault_account;
 
-    let stable_mint_address = ctx.accounts.stable_token_mint.key();
-    let seeds = &[stable_mint_address.as_ref(), &[stable_mint_bump]];
+    //let stable_mint_address = ctx.accounts.stable_token_mint.key();
+    let seeds = &[b"stable-token-mint".as_ref(), &[stable_mint_bump]];
     let signer = [&seeds[..]];
 
     // Transfer vault token to depositor
