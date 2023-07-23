@@ -19,7 +19,7 @@ Tech stack:
 
 ## Wireframes
 Landing Page:
-- [Landing](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/5bdb568d-7260-42cd-ac01-2df4537a0800) - Home Page
+- ![Landing](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/5bdb568d-7260-42cd-ac01-2df4537a0800) - Home Page
 
 ## Instruction pipelines
 ![Alt text](solanahackathon-Instructions.drawio.png)
