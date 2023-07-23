@@ -19,7 +19,7 @@ Tech stack:
 
 ## Wireframes
 Landing Page:
-- ![Landing](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/5bdb568d-7260-42cd-ac01-2df4537a0800)
+- ![landing page](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/8b487bfd-904d-48a1-9d59-a2cffd238760)
 - ![lending page](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/90321821-cd06-4ca1-9249-66d8301d8320)
 - ![lending page selected](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/c52e4af0-8dc7-4852-9643-472f7f45164e)
 - ![borrow page](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/e6700b43-2bad-448e-9f74-906ed325b7bc)
