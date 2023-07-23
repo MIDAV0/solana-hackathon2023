@@ -20,7 +20,7 @@ Tech stack:
 - [React](https://reactjs.org/) - Front end framework
 - [Solana](https://solana.com/) - Blockchain
 
- > # UX
+ > ## UX
 
 The UX has been designed to be simple and with the aim of targeting the most financially illiterate individuals
 with the purpose of easily encouraging individuals to provide liquidity and connect to the platform. 
