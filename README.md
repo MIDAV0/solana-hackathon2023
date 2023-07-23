@@ -1,6 +1,13 @@
 # solana-hackathon2023
 
-## Abstract
+  > ## Contents
+
+
+* [Features](https://github.com/MIDAV0/solana-hackathon2023#Abstract)
+    - [Team Members]()
+    - [Strategy](https://github.com/MIDAV0/solana-hackathon2023#Team-Members)
+
+> ## Abstract
 Bank Boss is designed at its core to be simplistic and user friendly with the capability to allow borrowers and lenders to leverage their assets
 to create an easier platform to leverage assets within the crypto eco-system. Currently individuals have a lenghty process to exit the market and in many instances do not wish to
 sell their positions for loss or for percieved loss. Bank Boss will allow them to lock their tokens at an agreed amount and make regular payments to recieve their 
@@ -10,7 +17,6 @@ borrower can still relaise the value which the lender recieves the interest agre
 ## Team Members
 - [Vadzim Mahilny](https://github.com/MIDAV0)
 - [Karl Timmins](https://github.com/Karlitoyo)
-
 
 ## High-level overview of the project
 ![Alt text](solanahackathon-Page-1.drawio.png)
