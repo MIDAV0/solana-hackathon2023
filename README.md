@@ -26,8 +26,7 @@ Landing Page:
 - ![borrow page selected](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/e294dec8-fb13-4703-bf11-ef21a9d9a243)
 
 
-## Instruction pipeline![Uploading lending page slected.png…]()
-s
+## Instruction pipeline
 ![Alt text](solanahackathon-Instructions.drawio.png)
 
 
