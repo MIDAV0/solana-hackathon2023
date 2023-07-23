@@ -14,7 +14,7 @@ borrower can still relaise the value which the lender recieves the interest agre
 > ## High-level overview of the project
 ![Alt text](solanahackathon-Page-1.drawio.png)
 
-## Project implementation
+> ## Project implementation
 Tech stack:
 - [Anchor](https://project-serum.github.io/anchor/getting-started/introduction.html) - Solana smart contract framework
 - [React](https://reactjs.org/) - Front end framework
@@ -42,7 +42,7 @@ This product can benefit individuals who rely on high interest loans or payday l
 current mortgage holders who are struggling to meet regular repayments or who may be in negative equity.
 
 
-## Wireframes
+> ## Wireframes
 ### Landing Page:
 <p align="center">
   <img width="600" height="600" src="https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/8b487bfd-904d-48a1-9d59-a2cffd238760">
@@ -101,7 +101,7 @@ decides not to continue with the repayment of the loan. The asset + €500 paid 
 ## Instruction pipeline
 ![Alt text](solanahackathon-Instructions.drawio.png)
 
-## SWOT
+> ## SWOT
 
 - Strengths
 
@@ -129,7 +129,7 @@ assets reducing leaving investor open to losses, similar to impairement loss cur
 relate to individuals not repaying loans upon taking loan. The interest cost being fixed within the original asset collatoral can mitigate this
 risk somewhat.
 
-## How to run
+> ## How to run
 
 `anchor build` - build smart contracts
 
