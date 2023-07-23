@@ -17,6 +17,28 @@ Tech stack:
 - [React](https://reactjs.org/) - Front end framework
 - [Solana](https://solana.com/) - Blockchain
 
+ > # UX
+
+The UX has been designed to be simple and with the aim of targeting the most financially illiterate individuals
+with the purpose of easily encouraging individuals to provide liquidity and connect to the platform. 
+
+## Users
+
+The website has a target audience of both new entrants to banking system and existing users. The age 
+profile is based on bank account users within our targeted demographic. Any individual with digital assets can make use of the service.
+
+## Strategy
+
+Initial strategy will be to target crypto users who currently require cash for their assests. This will allow individuals to
+retain their assets at the price agreed when taking the loan and to repay the loan to redeem their asset.
+
+## Scope
+
+The Scope of the service is to create financial literacy and encourage saving from a wider range of individuals.
+This product can benefit individuals who rely on high interest loans or payday loans, this service can also benefit
+current mortgage holders who are struggling to meet regular repayments or who may be in negative equity.
+
+
 ## Wireframes
 ### Landing Page:
 ![landing page](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/8b487bfd-904d-48a1-9d59-a2cffd238760)
@@ -36,9 +58,9 @@ Tech stack:
 Middle income user who has difficulty meeting loan obligations and struggles with regular savings -
 
 Individual who holds crypto assets requires cash loan to make payment for holiday. User feels asset will rise in value in the short to
-medium term. User can trade the asset on exhange for Bitcoin or Ethereum or other asset then pay high fees through crypto bank for cash
-and withdraw. Making use of Neo-Zapit user can trade the token they hold for cash at an agreed amount, term, and rate of interest. Withdraw
-cash to bank and repay loan over term. During the term of the loan the value of the asset held as collateral increases 2x. The user repays the
+medium term. User can trade the asset on exhange for Ethereum or snother asset then pay high fees through crypto bank for cash
+and withdraw. Making use of Bank-Boss users can trade the token they hold for cash at an agreed amount, term, and rate of interest. Withdraw
+the cash to bank and repay loan over term. During the term of the loan the value of the asset held as collateral increases 2x. The user repays the
 loan in full to the lender capital + interest and the asset is released at the original price at the borrower recieved the funds for. The borrower
 can then sell of re-loan based on the original agreement being met.
 
