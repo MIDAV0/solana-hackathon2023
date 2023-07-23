@@ -29,10 +29,56 @@ Tech stack:
 ### Borrow Page selected:
 ![borrow page selected](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/e294dec8-fb13-4703-bf11-ef21a9d9a243)
 
+> # User-Stories
+
+## First case example user experience
+
+Middle income user who has difficulty meeting loan obligations and struggles with regular savings -
+
+Individual who holds crypto assets requires cash loan to make payment for holiday. User feels asset will rise in value in the short to
+medium term. User can trade the asset on exhange for Bitcoin or Ethereum or other asset then pay high fees through crypto bank for cash
+and withdraw. Making use of Neo-Zapit user can trade the token they hold for cash at an agreed amount, term, and rate of interest. Withdraw
+cash to bank and repay loan over term. During the term of the loan the value of the asset held as collateral increases 2x. The user repays the
+loan in full to the lender capital + interest and the asset is released at the original price at the borrower recieved the funds for. The borrower
+can then sell of re-loan based on the original agreement being met.
+
+## Second case example user experience
+
+Low income user who is in arrears on mortgage and cannot maintain current levels of debt to salary -
+
+Borrower visits site. Borrower has digital assets of value €1100 which places against a loan as collateral for €1000 + 10% interest. User agrees term of 11 months @ €100 per month. The borrower makes 5 payments of €100. During this period the value of the asset drops to €600, the borrower
+decides not to continue with the repayment of the loan. The asset + €500 paid in the 5 monthly installments revert to the lender.
 
 ## Instruction pipeline
 ![Alt text](solanahackathon-Instructions.drawio.png)
 
+## SWOT
+
+- Strengths
+
+Personal finances applications market is an increasing market. Recent analysis by Statista -
+(https://www.statista.com/outlook/298/109/personal-finance/united-states)
+indicates market growth to over €1 Billion in value by 2023 in the United States alone. A growth of 25%
+from its current position.
+
+The system has numerous strengths which include simple user-friendly UI making use of blockchain technology
+, dectralized finance and allowing users to leverage their assets.
+
+- Weaknesses (Challenges)
+
+Challenges identified predominantly relate to smart contract development.
+
+- Opportunities
+
+This model is not in practice currently. Lending within the crypto eco-system is not fully adopted however this is an area within
+the space which will become more prevalent as the industry matures.
+
+- Threats
+
+Threats relate to similar products. However this is an emerging space within the crypto industry. Threats also relate to the value of
+assets reducing leaving investor open to losses, similar to impairement loss currently faced through providing liquidity. Threats also 
+relate to individuals not repaying loans upon taking loan. The interest cost being fixed within the original asset collatoral can mitigate this
+risk somewhat.
 
 ## How to run
 
