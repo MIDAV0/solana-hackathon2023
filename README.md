@@ -1,4 +1,4 @@
-# solana-hackathon2023
+# Solana-hackathon2023
 
 > ## Abstract
 Bank Boss is designed at its core to be simplistic and user friendly with the capability to allow borrowers and lenders to leverage their assets
