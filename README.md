@@ -7,11 +7,11 @@ sell their positions for loss or for percieved loss. Bank Boss will allow them t
 assets back at the loan price. This can create a scenario whereby should the asset increase to a greater amount than originally agreed the 
 borrower can still relaise the value which the lender recieves the interest agreed + original capital.
 
-## Team Members
+> ## Team Members
 - [Vadzim Mahilny](https://github.com/MIDAV0)
 - [Karl Timmins](https://github.com/Karlitoyo)
 
-## High-level overview of the project
+> ## High-level overview of the project
 ![Alt text](solanahackathon-Page-1.drawio.png)
 
 ## Project implementation
