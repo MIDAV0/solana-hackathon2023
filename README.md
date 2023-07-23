@@ -41,6 +41,9 @@ current mortgage holders who are struggling to meet regular repayments or who ma
 
 ## Wireframes
 ### Landing Page:
+<p align="center">
+  <img width="600" height="200" src="https://[www.python.org/python-.png](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/8b487bfd-904d-48a1-9d59-a2cffd238760)">
+</p>
 ![landing page](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/8b487bfd-904d-48a1-9d59-a2cffd238760)
 ### Lending Page:
 ![lending page](https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/90321821-cd06-4ca1-9249-66d8301d8320)
