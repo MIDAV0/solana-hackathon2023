@@ -3,9 +3,9 @@
   > ## Contents
 
 
-* [Features](https://github.com/MIDAV0/solana-hackathon2023#Abstract)
+* [Features](https://github.com/MIDAV0/solana-hackathon2023/edit/master/README.md#Abstract)
     - [Team Members]()
-    - [Strategy](https://github.com/MIDAV0/solana-hackathon2023#Team-Members)
+    - [Strategy](https://github.com/MIDAV0/solana-hackathon2023/edit/master/README.md#Team-Members)
 
 > ## Abstract
 Bank Boss is designed at its core to be simplistic and user friendly with the capability to allow borrowers and lenders to leverage their assets
