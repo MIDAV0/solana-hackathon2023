@@ -72,7 +72,18 @@ current mortgage holders who are struggling to meet regular repayments or who ma
 
  ## Current-Features
 
-To be updated
+- react
+- react-dom
+- next
+- typescript
+- @types/react
+- @types/node
+- @types/react-dom
+- tailwindcss
+- postcss
+- autoprefixer
+- eslint
+- eslint-config-next
 
 ## Further-Development
 
