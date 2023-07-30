@@ -1,4 +1,4 @@
-# TypeScript Next.js example
+# Boss Bank frontend
 
 ```
 npm install
