@@ -142,4 +142,4 @@ risk somewhat.
 
 `yarn install`
 
-Front end is in `frontend` folder (react-app).
+Front end is in `frontend` folder (Next.js-app).
