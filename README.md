@@ -12,7 +12,7 @@ assets back at the loan price. This can create a scenario whereby should the loc
 
 > ## High-level overview of the project
 <p align="center">
-  <img width="800" height="800" src="solanahackathon-Page-1.drawio.png">
+  <img width="700" height="600" src="solanahackathon-Page-1.drawio.png">
 </p>
 <!-- ![Alt text](solanahackathon-Page-1.drawio.png) -->
 
