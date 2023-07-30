@@ -28,12 +28,12 @@ The UX has been designed to be simple and with the aim of targeting the most all
 
 ## Users
 
-The website has a target audience of both new entrants to banking system and existing users. The age 
+The website has a target audience of both new entrants to the DeFi eco-system and existing users. The age 
 profile is based on bank account users within our targeted demographic. Any individual with digital assets can make use of the service.
 
 ## Strategy
 
-Initial strategy will be to target crypto users who currently require cash for their assests. This will allow individuals to
+Initial strategy will be to target crypto users who currently require cash for their assests and migrate users from centralized exchanges. This will allow individuals to
 retain their assets at the price agreed when taking the loan and to repay the loan to redeem their asset.
 
 ## Scope
