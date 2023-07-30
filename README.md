@@ -68,26 +68,21 @@ current mortgage holders who are struggling to meet regular repayments or who ma
   <img width="600" height="600" src="https://github.com/MIDAV0/solana-hackathon2023/assets/30006896/e294dec8-fb13-4703-bf11-ef21a9d9a243">
 </p>
 
- > ## Development
+ > ## Current-Features
 
- ## Current-Features
+## Development
 
-- react
-- react-dom
-- next
-- typescript
-- @types/react
-- @types/node
-- @types/react-dom
-- tailwindcss
-- postcss
-- autoprefixer
-- eslint
-- eslint-config-next
+We currently have a vault contract created which has different templates for accounts such as vault, loan and working logic for account interaction.
 
-## Further-Development
+This allows users to create vaults, deposit, withdraw and borrow from the contract. We have utilized the Anchor Solana smart contract framework for development.
 
-To be updated
+We have a Next.js frontend and Tailwind Daisy UI for styling.
+
+## Further Development
+
+We encountered challenges with the creation of PDA's (programme driven accounts). The specific issue we faced related to our knowledge of the Solana development enviornment and being able to accesss the required knowledge for our contract interactions with durable nonces. Our intention with the service is to make use of recurring payments and durable nonces enables this feature, however within the timeframe we ecountered challenges in implementing this feature.
+
+We are continuing to devleop this product and we are confident with engagement and further dicsussion with Solana dev's we can achieve this. Many example projects within the Solana eco-system are not focused on our specific use case and as such this created speed bumps in our development.
 
 > ## User-Stories
 
@@ -95,18 +90,14 @@ To be updated
 
 Middle income user who has difficulty meeting loan obligations and struggles with regular savings -
 
-Individual who holds crypto assets requires cash loan to make payment for holiday. User feels asset will rise in value in the short to
-medium term. User can trade the asset on exhange for Ethereum or snother asset then pay high fees through crypto bank for cash
-and withdraw. Making use of Bank-Boss users can trade the token they hold for cash at an agreed amount, term, and rate of interest. Withdraw
-the cash to bank and repay loan over term. During the term of the loan the value of the asset held as collateral increases 2x. The user repays the
-loan in full to the lender capital + interest and the asset is released at the original price at the borrower recieved the funds for. The borrower
-can then sell of re-loan based on the original agreement being met.
+Individual who holds crypto assets requires stablecoin loan to make payment for an upcoming holiday. User feels their asset will rise in value in the short to
+medium term. The current method for exiting funds out of the crypto eco-system requires a user to trade the asset on a centralized exhange for a choice of Ethereum/Bitcoin or another asset and this incurrs high fees through a crypto bank for cash and then to withdraw funds. Making use of Bank-Boss users can trade the token they hold for stablecoins at an agreed amount, term, and rate of interest. Withdraw the cash to bank and repay loan over term. During the term of the loan the value of the asset held as collateral increases 2x. The user repays the loan in full to the lender capital + interest and the asset is released at the original price that the borrower recieved the funds for.
 
 ## Second case example user experience
 
-Low income user who is in arrears on mortgage and cannot maintain current levels of debt to salary -
+Low income user who is in arrears on their mortgage repayments and cannot maintain current levels of debt (however holds crypto asset) -
 
-Borrower visits site. Borrower has digital assets of value €1100 which places against a loan as collateral for €1000 + 10% interest. User agrees term of 11 months @ €100 per month. The borrower makes 5 payments of €100. During this period the value of the asset drops to €600, the borrower
+Borrower has digital asset to the value of €1100 which the user places against a loan as collateral for €1000 + 10% interest. User agrees term of 11 months @ €100 per month. The borrower makes 5 payments of €100. During this period the value of the asset drops to €600, the borrower
 decides not to continue with the repayment of the loan. The asset + €500 paid in the 5 monthly installments revert to the lender.
 
 > ## Instruction pipeline
